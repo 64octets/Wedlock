@@ -1,0 +1,116 @@
+/* Main content */
+
+.site-content {
+    margin-top: 60px;
+}
+h1.entry-title {
+    padding-top: 0;
+}
+.hentry {
+    margin: 0 0 3em;
+	
+	.entry-meta {
+		a {
+			color: $body-font-color;
+			&:hover{
+				color:$primary-color;
+			}
+		}
+	}
+}
+
+
+/* Masonry posts */
+
+#posts-container {
+    margin-left: -2rem;
+	
+	@include respond(all-phones){ 
+		margin-left: 0rem;
+	}
+}
+
+.blogroll.post {
+    position: relative;
+	padding-bottom: 0em;
+    width: 33%;
+    padding-left: 2rem;
+	
+	@include respond(all-phones){ 
+		width: 100%;
+		padding-left: 0;
+	}
+	
+	.entry-title {
+		padding-top: 0;
+	}
+}
+
+
+/* Posts nav */
+.navigation.posts-navigation {
+    margin-bottom: 80px;
+	
+	.screen-reader-text {
+		font-size: 2rem;
+	}
+}
+
+.navigation.post-navigation {
+    margin-bottom: 80px;
+	
+	.screen-reader-text {
+		font-size: 2rem;
+	}
+}
+
+.sticky {
+	display: block;
+}
+
+.hentry {
+	margin: 0 0 3em;
+}
+.entry-meta {
+    margin-bottom: 0em;
+}
+.bypostauthor {
+	display: block;
+}
+.byline,
+.updated:not(.published){
+	display: none;
+}
+
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}
+
+.page-content,
+.entry-content,
+.entry-summary {
+	margin: 0;
+}
+
+.page-links {
+	clear: both;
+	margin: 0 0 1.5em;
+}
+
+/* Alignments */
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+}

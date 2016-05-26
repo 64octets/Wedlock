@@ -8,8 +8,9 @@
  */
 
 get_header(); ?>
+<div id="content" class="site-content row">
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area twelve columns">
 		<main id="main" class="site-main" role="main">
 
 			<section class="error-404 not-found">

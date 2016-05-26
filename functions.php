@@ -104,8 +104,8 @@ function wedlock_widgets_init() {
 		'description'   => '',
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
 	) );
 }
 add_action( 'widgets_init', 'wedlock_widgets_init' );
@@ -116,15 +116,42 @@ add_action( 'widgets_init', 'wedlock_widgets_init' );
 function wedlock_scripts() {
 	wp_enqueue_style( 'wedlock-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'wedlock-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_style( 'wedlock-gumby-style', get_template_directory_uri() . '/css/gumby.css', array(), '20151215', false );
 
-	wp_enqueue_script( 'wedlock-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'jquery' );
+	
+	wp_enqueue_script( 'wedlock-modernizr', get_template_directory_uri() . '/js/libs/modernizr-2.6.2.min.js', array('jquery' ), '20151215', false );
+
+	wp_enqueue_script( 'wedlock-gumby', get_template_directory_uri() . '/js/libs/gumby.js', array(), '20151215', true );
+	
+	wp_enqueue_script( 'wedlock-retina', get_template_directory_uri() . '/js/libs/ui/gumby.retina.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-fixed', get_template_directory_uri() . '/js/libs/ui/gumby.fixed.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-skiplink', get_template_directory_uri() . '/js/libs/ui/gumby.skiplink.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-toggleswitch', get_template_directory_uri() . '/js/libs/ui/gumby.toggleswitch.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-checkbox', get_template_directory_uri() . '/js/libs/ui/gumby.checkbox.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-radiobtn', get_template_directory_uri() . '/js/libs/ui/gumby.radiobtn.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-tabs', get_template_directory_uri() . '/js/libs/ui/gumby.tabs.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-navbar', get_template_directory_uri() . '/js/libs/ui/gumby.navbar.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-validation', get_template_directory_uri() . '/js/libs/ui/jquery.validation.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-init', get_template_directory_uri() . '/js/libs/gumby.init.js', array('jquery'), '20151215', true );
+	
+	wp_enqueue_script( 'wedlock-masonry', get_template_directory_uri() . '/js/masonry.pkgd.js', array(), '20151215', true );
+	wp_enqueue_script( 'wedlock-imageloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd', array(), '20151215', true );
+
+
+	wp_enqueue_script( 'wedlock-plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery'), '20151215', true );
+	wp_enqueue_script( 'wedlock-main', get_template_directory_uri() . '/js/main.js', array('jquery'), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wedlock_scripts' );
+
+/**
+ * Implement the Custom Walker.
+ */
+require get_template_directory() . '/inc/custom-menu-walker.php';
 
 /**
  * Implement the Custom Header feature.
