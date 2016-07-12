@@ -111,3 +111,14 @@ function wedlock_category_transient_flusher() {
 }
 add_action( 'edit_category', 'wedlock_category_transient_flusher' );
 add_action( 'save_post',     'wedlock_category_transient_flusher' );
+
+/**
+ * Output custom logo.
+ */
+function wedlock_the_custom_logo() {
+	
+	if ( function_exists( 'the_custom_logo' ) ) {
+		the_custom_logo();
+	}
+
+}

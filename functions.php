@@ -41,7 +41,14 @@ function wedlock_setup() {
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
 	add_theme_support( 'post-thumbnails' );
+	
+	/*
+	 * Enable support for site logo.
+	 */
+	add_image_size( 'wedlock-logo', 270, 60 );
+	add_theme_support( 'custom-logo', array( 'size' => 'wedlock-logo', 'flex-height' => true, 'flex-width'  => true, 'header-text' => array( 'site-title', 'site-description' ) ) );
 
+	
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary', 'wedlock' ),

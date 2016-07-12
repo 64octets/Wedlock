@@ -26,7 +26,14 @@
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-top row">
 			<div class="logo">
-				<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php 
+				$custom_logo_id = get_theme_mod( 'custom_logo' );
+				$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );						
+				if (!$image[0]):?>
+					<h1><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php else :?>
+					<h1><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $image[0]; ?>"></a></h1>
+				<?php endif;?>		
 			<?php $description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
 				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
