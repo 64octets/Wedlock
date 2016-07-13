@@ -30,9 +30,9 @@
 				$custom_logo_id = get_theme_mod( 'custom_logo' );
 				$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );						
 				if (!$image[0]):?>
-					<h1><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+					<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
 				<?php else :?>
-					<h1><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $image[0]; ?>"></a></h1>
+					<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $image[0]; ?>"></a>
 				<?php endif;?>		
 			<?php $description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
