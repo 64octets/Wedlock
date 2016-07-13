@@ -1782,7 +1782,8 @@ embed, iframe, object { max-width: 100%; }
 /* Header */
 .site-header { padding-top: 20px; }
 .site-header .logo { margin: 0 auto; display: table; }
-.site-header .logo h1 { padding-bottom: 0; }
+.site-header .logo a { display: block; }
+.site-header .logo a img { display: table-cell; vertical-align: middle; }
 .site-header .site-description { text-align: center; }
 
 /* Footer */
