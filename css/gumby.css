@@ -1249,7 +1249,7 @@ img { -ms-interpolation-mode: bicubic; }
 
 .navbar .logo { display: inline-block; margin: 0 1.5873% 0 0; padding: 0; height: 51px; line-height: 49px; }
 .navbar .logo a { display: block; padding: 0; overflow: hidden; height: 51px; line-height: 49px; }
-.navbar .logo a img { max-height: 95%; }
+.navbar .logo a img { max-height: 95%; display: table-cell; vertical-align: middle; }
 @media only screen and (max-width: 767px) { .navbar .logo { float: left; display: inline; }
   .navbar .logo a { padding: 0; }
   .navbar .logo a img { width: auto; height: auto; max-width: 100%; } }
