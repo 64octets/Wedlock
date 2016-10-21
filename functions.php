@@ -45,8 +45,8 @@ function wedlock_setup() {
 	/*
 	 * Enable support for site logo.
 	 */
-	add_image_size( 'wedlock-logo', 270, 60 );
-	add_theme_support( 'custom-logo', array( 'size' => 'wedlock-logo', 'flex-height' => true, 'flex-width'  => true, 'header-text' => array( 'site-title', 'site-description' ) ) );
+	add_image_size( 'logo', 270, 60 );
+	add_theme_support( 'custom-logo', array( 'size' => 'logo', 'flex-height' => true, 'flex-width'  => true, 'header-text' => array( 'site-title', 'site-description' ) ) );
 
 	
 	// This theme uses wp_nav_menu() in one location.
@@ -117,41 +117,72 @@ function wedlock_widgets_init() {
 }
 add_action( 'widgets_init', 'wedlock_widgets_init' );
 
+
+if ( ! function_exists( 'wedlock_fonts_url' ) ) :
+/**
+ * Register Google fonts for Wedlock.
+ *
+ * Create your own wedlock_fonts_url() function to override in a child theme.
+ *
+ * @since Wedlock 1.0.2
+ *
+ * @return string Google fonts URL for the theme.
+ */
+function wedlock_fonts_url() {
+	$fonts_url = '';
+	$fonts     = array();
+	$subsets   = 'cyrillic,latin,latin-ext';
+	
+	/* translators: If there are characters in your language that are not supported by Open Sans, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Cinzel: on or off', 'wedlock' ) ) {
+		$fonts[] = 'Cinzel:400,700';
+	}
+	/* translators: If there are characters in your language that are not supported by Open Sans, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'PT Sans font: on or off', 'wedlock' ) ) {
+		$fonts[] = 'PT+Sans:400,400italic,700,700italic';
+	}
+	if ( $fonts ) {
+		$fonts_url = add_query_arg( array(
+			'family' => urlencode( implode( '|', $fonts ) ),
+			'subset' => urlencode( $subsets ),
+		), 'https://fonts.googleapis.com/css' );
+	}
+	return $fonts_url;
+}
+endif;
+
+
+
 /**
  * Enqueue scripts and styles.
  */
 function wedlock_scripts() {
+	//Stylesheets
 	wp_enqueue_style( 'wedlock-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'gumby-style', get_template_directory_uri() . '/css/gumby.css', array(), '20151215', false );
+	wp_enqueue_style( 'wedlock-fonts', wedlock_fonts_url(), array(), null);  
 
-	wp_enqueue_style( 'wedlock-gumby-style', get_template_directory_uri() . '/css/gumby.css', array(), '20151215', false );
-
-	wp_enqueue_script( 'jquery' );
-	
-	wp_enqueue_script( 'wedlock-modernizr', get_template_directory_uri() . '/js/libs/modernizr-2.6.2.min.js', array('jquery' ), '20151215', false );
-
-	wp_enqueue_script( 'wedlock-gumby', get_template_directory_uri() . '/js/libs/gumby.js', array(), '20151215', true );
-	
-	wp_enqueue_script( 'wedlock-retina', get_template_directory_uri() . '/js/libs/ui/gumby.retina.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-fixed', get_template_directory_uri() . '/js/libs/ui/gumby.fixed.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-skiplink', get_template_directory_uri() . '/js/libs/ui/gumby.skiplink.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-toggleswitch', get_template_directory_uri() . '/js/libs/ui/gumby.toggleswitch.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-checkbox', get_template_directory_uri() . '/js/libs/ui/gumby.checkbox.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-radiobtn', get_template_directory_uri() . '/js/libs/ui/gumby.radiobtn.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-tabs', get_template_directory_uri() . '/js/libs/ui/gumby.tabs.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-navbar', get_template_directory_uri() . '/js/libs/ui/gumby.navbar.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-validation', get_template_directory_uri() . '/js/libs/ui/jquery.validation.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-init', get_template_directory_uri() . '/js/libs/gumby.init.js', array('jquery'), '20151215', true );
-	
-	wp_enqueue_script( 'wedlock-masonry', get_template_directory_uri() . '/js/masonry.pkgd.js', array(), '20151215', true );
-	wp_enqueue_script( 'wedlock-imageloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd', array(), '20151215', true );
-
-
-	wp_enqueue_script( 'wedlock-plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery'), '20151215', true );
-	wp_enqueue_script( 'wedlock-main', get_template_directory_uri() . '/js/main.js', array('jquery'), '20151215', true );
-
+	// Default Scripts Included and Registered by WordPress
+	wp_enqueue_script( 'jquery' );	
+	wp_enqueue_script( 'masonry' );
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+	
+	//Modernizr Gumbuy-build
+	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/libs/modernizr-2.6.2.min.js', array('jquery' ), '20151215', false );
+
+	//Gumby library
+	wp_enqueue_script( 'gumby', get_template_directory_uri() . '/js/libs/gumby.js', array(), '20151215', true );	
+	wp_enqueue_script( 'gumby-retina', get_template_directory_uri() . '/js/libs/ui/gumby.retina.js', array(), '20151215', true );
+	wp_enqueue_script( 'gumby-fixed', get_template_directory_uri() . '/js/libs/ui/gumby.fixed.js', array(), '20151215', true );
+	wp_enqueue_script( 'gumby-toggleswitch', get_template_directory_uri() . '/js/libs/ui/gumby.toggleswitch.js', array(), '20151215', true );
+	wp_enqueue_script( 'gumby-navbar', get_template_directory_uri() . '/js/libs/ui/gumby.navbar.js', array(), '20151215', true );
+	wp_enqueue_script( 'gumby-validation', get_template_directory_uri() . '/js/libs/ui/jquery.validation.js', array(), '20151215', true );
+	wp_enqueue_script( 'gumby-init', get_template_directory_uri() . '/js/libs/gumby.init.js', array('jquery'), '20151215', true );
+	wp_enqueue_script( 'gumby-plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery'), '20151215', true );
+	wp_enqueue_script( 'gumby-main', get_template_directory_uri() . '/js/main.js', array('jquery'), '20151215', true );
+
 }
 add_action( 'wp_enqueue_scripts', 'wedlock_scripts' );
 

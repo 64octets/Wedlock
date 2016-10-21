@@ -32,7 +32,7 @@
 				if (!$image[0]):?>
 					<h1><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 				<?php else :?>
-					<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $image[0]; ?>"></a>
+					<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $image[0] ); ?>"></a>
 				<?php endif;?>		
 			<?php $description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>

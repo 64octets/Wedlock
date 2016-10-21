@@ -1,4 +1,4 @@
-=== Wedlock ===
+Wedlock WordPress theme is licensed under the GNU General Public License(http://www.gnu.org/licenses/gpl-3.0.html)
 
 Based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
 
