@@ -23,7 +23,7 @@
 <body <?php body_class(); ?>>
 <div id="page" class="site">
 
-	<header id="masthead" class="site-header" role="banner">
+	<header id="masthead" class="site-header" role="banner" style="background-image:url('<?php header_image(); ?>')">
 		<div class="header-top row">
 			<div class="logo">
 				<?php 

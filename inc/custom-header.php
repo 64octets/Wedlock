@@ -52,6 +52,15 @@ function wedlock_header_style() {
 	// If we get this far, we have custom styles. Let's do this.
 	?>
 	<style type="text/css">
+	
+	<?php if ( get_header_image() ) : ?>
+	
+	.site-header{
+		
+		background: url("<?php header_image(); ?>") no-repeat 50% 50% cover;
+		
+	}
+	<?php endif;?>
 	<?php
 		// Has the text been hidden?
 		if ( ! display_header_text() ) :
