@@ -30,7 +30,7 @@
 				$custom_logo_id = get_theme_mod( 'custom_logo' );
 				$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );						
 				if (!$image[0]):?>
-					<h1><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+					<h1 class="site-title"><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 				<?php else :?>
 					<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $image[0] ); ?>"></a>
 				<?php endif;?>		
@@ -53,7 +53,7 @@
 						wp_nav_menu( array( 'theme_location' => 'primary', 'container'=>'', 'fallback_cb' =>'', 'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>', 'walker' => new wedlock_walker) );
 					}
 					else 
-						echo '<ul><li><a href="' . esc_url( home_url('/') ) . 'wp-admin/nav-menus.php">Go to "Appearance - Menus" to set-up menu</a></li></ul>';	
+						echo '<ul><li><a href="' . esc_url( home_url('/') ) . 'wp-admin/nav-menus.php">' . __('Go to "Appearance - Menus" to set-up menu', 'wedlock') . '</a></li></ul>';	
 					?>
 				</div>
 			</div>
